@@ -6,6 +6,32 @@ Reaction.registerPackage({
   label: "Recommendation",
   name: "recommendation",
   icon: "fa fa-bar-chart",
-  autoEnable: true  
+  autoEnable: true,
+  settings: {
+    params: {
+      num_products: 5
+    }
+  },
+  registry: [
+    {
+      provides: ["dashboard"],
+      route: "/dashboard/shipping",
+      name: "recommendation",
+      label: "Recommendation",
+      description: "Recommendation Dashboard",
+      container: "core",
+      icon: "fa fa-bar-chart"      
+    },
+    {
+      //Menu lateral de configuracoes de recommendacao
+      label: "Recommendation",
+      icon: "fa fa-bar-chart",
+      name: "/settings/recommendation",
+      provides: ["settings"],
+      container: "dashboard",
+      description: "Recommendation Settings",
+      template: "recommendationSettings"
+    }
+  ]
 });
 

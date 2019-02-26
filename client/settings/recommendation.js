@@ -17,12 +17,12 @@ Template.recommendationSettings.helpers({
   }
 });
 
-/*
+
 Template.recommendationSettings.events({
   "click [data-event-action=showRecommendationSettings]"() {
     Reaction.showActionView();
   }
-});*/
+});
 
 AutoForm.hooks({
   "recommendation-update-form": {

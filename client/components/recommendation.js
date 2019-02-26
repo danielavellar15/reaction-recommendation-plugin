@@ -13,7 +13,7 @@ class Recommendation extends React.Component {
     return (
       <div>
         <div>
-          <h3>Recomendações</h3>
+          <h3>Recomendacoes</h3>
         </div>
         <Components.Products></Components.Products>
       </div>

@@ -24,9 +24,9 @@ Reaction.registerPackage({
     },
     {
       //Menu lateral de configuracoes de recommendacao
-      label: "Recommendation",
+      label: "Recommendationsettings",
       icon: "fa fa-bar-chart",
-      name: "/settings/recommendation",
+      name: "/settings/recommendationSettings",
       provides: ["settings"],
       container: "dashboard",
       description: "Recommendation Settings",

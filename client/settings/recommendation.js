@@ -5,7 +5,7 @@ import { Packages } from "/lib/collections";
 import { RecommendationParamsConfig } from "../../lib/collections/schemas";
 
 
-Template.recommendationSettings.helpers({
+/*Template.recommendationSettings.helpers({
   RecommendationParamsConfig() {
     return RecommendationParamsConfig;
   },
@@ -22,7 +22,7 @@ Template.recommendationSettings.events({
   "click [data-event-action=showRecommendationSettings]"() {
     Reaction.showActionView();
   }
-});
+});*/
 
 AutoForm.hooks({
   "recommendation-update-form": {

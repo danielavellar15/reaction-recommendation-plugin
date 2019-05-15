@@ -4,8 +4,9 @@ import { Reaction } from "/client/api";
 import { Packages } from "/lib/collections";
 import { RecommendationParamsConfig } from "../../lib/collections/schemas";
 
+import "./recommendation.html";
 
-/*Template.recommendationSettings.helpers({
+Template.recommendationSettings.helpers({
   RecommendationParamsConfig() {
     return RecommendationParamsConfig;
   },
@@ -17,7 +18,7 @@ import { RecommendationParamsConfig } from "../../lib/collections/schemas";
   }
 });
 
-
+/*
 Template.recommendationSettings.events({
   "click [data-event-action=showRecommendationSettings]"() {
     Reaction.showActionView();

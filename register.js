@@ -15,7 +15,7 @@ Reaction.registerPackage({
   registry: [
     {
       provides: ["dashboard"],
-      route: "/dashboard/shipping",
+      route: "/dashboard/recommendation",
       name: "recommendation",
       label: "Recommendation",
       description: "Recommendation Dashboard",
@@ -34,4 +34,6 @@ Reaction.registerPackage({
     }
   ]
 });
+
+
 

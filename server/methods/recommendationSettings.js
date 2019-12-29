@@ -16,7 +16,6 @@ export const methods = {
 
     "recommendationSettings/updateSettings"(details, docId) {
         console.log(details);
-        console.log(docId);
 
         check(details, Object);
 
@@ -25,14 +24,11 @@ export const methods = {
         const id = docId || details._id;
         const modifier = docId ? details : details.modifier;
 
-        // Important server-side checks for security and data integrity
-        //check(id, String);
+        check(id, String);
         RecommendationParamsConfig.validate(modifier, { modifier: true });
         //verificar role
-        console.log(modifier);
-        Packages.update(`nLZtvAvSEH9H2Ck4j`, modifier);
+        Packages.update(id, modifier);
 
-        //Logger.error(newSettings);
 
         return { type: "update" };
     }

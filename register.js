@@ -8,9 +8,7 @@ Reaction.registerPackage({
   icon: "fa fa-bar-chart",
   autoEnable: true,
   settings: {
-    params: {
-      num_products: 5
-    }
+      num_products: 4
   },
   registry: [
     {

@@ -25,15 +25,17 @@ Template.recommendationSettings.events({
   }
 });*/
 
+
 AutoForm.hooks({
-  "recommendation-update-form": {
+  recommendationSettingsForm: {
     onSuccess() {
       Alerts.removeSeen();
       return Alerts.toast("SUCESSO", "success");
     },
     onError(operation, error) {
       Alerts.removeSeen();
-      return Alerts.toast("ERRO", "error");
+
+      return Alerts.toast(`ERRO ${error}`, "error");
     }
   }
 });

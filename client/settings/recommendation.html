@@ -1,32 +1,29 @@
 <template name="recommendationSettings">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">Recommendation Settings</div>
-      </div>
-      <div class="panel-body">
-        {{#autoForm
-          collection=Collections.Packages
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">Recommendation Settings</div>
+    </div>
+    <div class="panel-body">
+      {{#autoForm
           schema=RecommendationParamsConfig
-          id="recommendation-update-form"
+          collection=Collections.Packages          
+          doc=packageData
+          id="recommendationSettingsForm"          
+          type="update"
+          autosave=true
         }}
-          <div class="row">
-            <div class="form-group col-md-8">
-              TESTE
-            </div>
-            <br>
-            <div>
-              {{> afQuickField name="settings.num_products" class='form-control'}}
-            </div>
-          </div>
-  
-       
-  
-          
-  
-          <button type="submit" class="btn btn-primary pull-right"><span data-i18n="app.saveChanges">Save Changes</span></button>
-        {{/autoForm}}
+      <div class="panel-group">
+        <div>          
+          {{> afQuickField name="settings.num_products" class='form-control'}}
+        </div>
       </div>
-      <!--<div class="panel-heading">
+      {{> shopSettingsSubmitButton}}
+      {{/autoForm}}
+    </div>
+    <!--
+      meteormethod="recommendationSettings/updateSettings"
+      schema=RecommendationParamsConfig
+      <div class="panel-heading">
         <div data-i18n="searchSettings.orderSearchSettings.panelTitle" class="panel-title">Order Search Settings</div>
       </div>
       <div data-i18n="searchSettings.noSettings" class="panel-body">No settings currently available</div>
@@ -35,8 +32,5 @@
         <div data-i18n="searchSettings.accountSearchSettings.panelTitle" class="panel-title">Account Search Settings</div>
       </div>
       <div data-i18n="searchSettings.noSettings" class="panel-body">No settings currently available</div>-->
-    </div>
-  </template>
-  
-
-  
+  </div>
+</template>

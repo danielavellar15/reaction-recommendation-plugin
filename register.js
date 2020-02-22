@@ -8,26 +8,26 @@ Reaction.registerPackage({
   icon: "fa fa-bar-chart",
   autoEnable: true,
   settings: {
-      num_products: 4
+      num_products: 5
   },
   registry: [
-    {
-      provides: ["dashboard"],
-      route: "/dashboard/recommendation",
-      name: "recommendation",
-      label: "Recommendation",
-      description: "Recommendation Dashboard",
-      container: "core",
-      icon: "fa fa-bar-chart"      
-    },
+    // {
+    //   provides: ["dashboard"],
+    //   route: "/dashboard/recommendation",
+    //   name: "recommendation",
+    //   label: "Recommendation",
+    //   description: "Recommendation Dashboard",
+    //   container: "core",
+    //   icon: "fa fa-bar-chart"      
+    // },
+    //aadsadddddddd
     {
       //Menu lateral de configuracoes de recommendacao
-      label: "Recommendationsettings",
+      label: "Recommendation Settings",
       icon: "fa fa-bar-chart",
-      name: "/settings/recommendationSettings",
+      name: "recommendation-settings",
       provides: ["settings"],
       container: "dashboard",
-      description: "Recommendation Settings",
       template: "recommendationSettings"
     }
   ]

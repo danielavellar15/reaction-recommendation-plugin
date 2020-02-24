@@ -1,65 +1,58 @@
-// import { AutoForm } from "meteor/aldeed:autoform";
-// import { Template } from "meteor/templating";
 import { Reaction } from "/client/api";
 import { Packages } from "/lib/collections";
-// import { RecommendationParamsConfig } from "../../lib/collections/schemas";
+import PropTypes from "prop-types";
 import { withApollo } from "react-apollo";
 import { withRouter } from "react-router";
-import { compose } from "recompose";
+import { composeWithTracker } from "@reactioncommerce/reaction-components";
 import withOpaqueShopId from "/imports/plugins/core/graphql/lib/hocs/withOpaqueShopId";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Field from "@reactioncommerce/components/Field/v1"
 import TextInput from "@reactioncommerce/components/TextInput/v1"
-
-
 import React, { Component } from "react";
 import { registerComponent } from "@reactioncommerce/reaction-components";
 import { Meteor } from "meteor/meteor";
 import { Button, SettingsCard } from "@reactioncommerce/reaction-ui";
 
-
-//import "./recommendation.html";
-
-// Template.recommendationSettings.helpers({
-//   RecommendationParamsConfig() {
-//     return RecommendationParamsConfig;
-//   },
-//   packageData() {
-//     return Packages.findOne({
-//       name: "recommendation",
-//       shopId: Reaction.getShopId()
-//     });
-//   }
-// });
-
-/*
-Template.recommendationSettings.events({
-  "click [data-event-action=showRecommendationSettings]"() {
-    Reaction.showActionView();
-  }
-});*/
-
-
-// AutoForm.hooks({
-//   recommendationSettingsForm: {
-//     onSuccess() {
-//       Alerts.removeSeen();
-//       return Alerts.toast("SUCESSO", "success");
-//     },
-//     onError(operation, error) {
-//       Alerts.removeSeen();
-
-//       return Alerts.toast(`ERRO ${error}`, "error");
-//     }
-//   }
-// });
-
-//teste
-
 class RecommendationSettings extends Component {
+
+  defaultValues;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      settings: {
+        num_products: ''
+      }
+    }
+
+    this.defaultValues = {
+      settings: {
+        num_products: props.packageData.settings.num_products.toString()
+      }
+    }
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange() {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    
+    this.setState({
+      settings: {
+        [name]: value
+      }
+    });
+  }
+
   handleUpdateDataClick = () => {
-    Meteor.call("recommendationSettings/updateSettings", (error) => {
+    const packageId = this.props.packageData._id;    
+    const state = this.state;
+
+    Meteor.call("recommendationSettings/updateSettings", packageId, state, (error) => {
       if (error) {
         Alerts.toast(`Error updating sample data ${error.reason}`, "error");
       } else {
@@ -68,56 +61,64 @@ class RecommendationSettings extends Component {
     });
   }
 
-  getNumberOfProducts() {
-    const recommendationSettingsAtributtes = Packages.findOne({
-      name: "recommendation",
-      shopId: Reaction.getShopId()
-    });
-    return recommendationSettingsAtributtes.settings.num_products.toString();
-  }
-
   render() {
-    const numberProducts = this.getNumberOfProducts();
-
     return(
       <div>
-      <Card>
-        <CardContent>
-          <Field 
-            label={"Number of Products"} 
-            labelFor="numberProductsInput"
-          >
-            <TextInput 
-              id="numberProductsInput"
-              name="numberProducts"
-              value={ numberProducts || ""}
-              type="number"              
-            >
+        <form>
+          <Card>
+            <CardContent>
+              <Field 
+                label={"Number of Products"} 
+                labelFor="numberProductsInput"
+              >
+                <TextInput 
+                  id="numberProductsInput"
+                  name="num_products"
+                  value={this.state.settings.num_products || this.defaultValues.settings.num_products}
+                  onChange={this.handleInputChange}
+                  type="number"              
+                >
 
-            </TextInput>
-          </Field>
-          <Button
-            bezelStyle={"solid"}
-            primary={true}
-            label={"Save"}
-            onClick={this.handleUpdateDataClick}
-          />
-        </CardContent>
-      </Card>
-      
+                </TextInput>
+              </Field>
+              <Button
+                bezelStyle={"solid"}
+                primary={true}
+                label={"Save"}
+                onClick={this.handleUpdateDataClick}
+              />
+            </CardContent>
+          </Card>
+        </form>      
     </div>
     );
   }
 }
 
+RecommendationSettings.propTypes = {
+  packageData: PropTypes.object
+};
+
+const composer = (props, onData) => {
+  const subscription = Meteor.subscribe("Packages", Reaction.getShopId());
+  if (subscription.ready()) {
+    const packageData = Packages.findOne({
+      name: "recommendation",
+      shopId: Reaction.getShopId()
+    });
+    onData(null, { packageData });
+  }
+};
 
 registerComponent("RecommendationSettings", RecommendationSettings, [
+  composer,
   withApollo,
   withRouter,
   withOpaqueShopId
 ]);
 
-export default compose(
+export default composeWithTracker(
+  composer,
   withApollo,
   withRouter,
   withOpaqueShopId

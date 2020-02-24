@@ -11,16 +11,6 @@ Reaction.registerPackage({
       num_products: 5
   },
   registry: [
-    // {
-    //   provides: ["dashboard"],
-    //   route: "/dashboard/recommendation",
-    //   name: "recommendation",
-    //   label: "Recommendation",
-    //   description: "Recommendation Dashboard",
-    //   container: "core",
-    //   icon: "fa fa-bar-chart"      
-    // },
-    //aadsadddddddd
     {
       //Menu lateral de configuracoes de recommendacao
       label: "Recommendation Settings",

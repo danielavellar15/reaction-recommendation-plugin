@@ -14,23 +14,23 @@ export const methods = {
      *  
      */
 
-    "recommendationSettings/updateSettings"(details, docId) {
-        console.log(details);
+    "recommendationSettings/updateSettings"(shopId, details) {
+        
+        // const shopId = Reaction.getShopId();
 
         check(details, Object);
-
-        // Backward compatibility
-        check(docId, Match.Optional(String));
-        const id = docId || details._id;
-        const modifier = docId ? details : details.modifier;
-
-        check(id, String);
-        RecommendationParamsConfig.validate(modifier, { modifier: true });
+        check(shopId, String);
+        console.log(shopId);
+        console.log(details);
+        //RecommendationParamsConfig.validate(details);
         //verificar role
-        Packages.update(id, modifier);
-
-
-        return { type: "update" };
+        const a = Packages.update({
+            "_id": shopId
+        },{
+            $set: details
+        });
+        console.log(a);
+        return a;
     }
 
 }

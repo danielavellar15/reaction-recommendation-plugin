@@ -68,7 +68,7 @@ class RecommendationSettings extends Component {
           <Card>
             <CardContent>
               <Field 
-                label={"Number of Products"} 
+                label={"Numero de produtos"} 
                 labelFor="numberProductsInput"
               >
                 <TextInput 
@@ -84,7 +84,7 @@ class RecommendationSettings extends Component {
               <Button
                 bezelStyle={"solid"}
                 primary={true}
-                label={"Save"}
+                label={"Salvar"}
                 onClick={this.handleUpdateDataClick}
               />
             </CardContent>

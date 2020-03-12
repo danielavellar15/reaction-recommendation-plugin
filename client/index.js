@@ -1,13 +1,8 @@
-//import "./components";
-//import "./container";
-//import "./styles/layout.less";
 import React from "react";
-
-import RecommendationSettingsPage from "./pages/recommendation"
-
 import { registerOperatorRoute } from "/imports/client/ui";
 import AccountIcon from "mdi-material-ui/ChartBar";
 
+import RecommendationSettingsPage from "./pages/recommendation"
 
 registerOperatorRoute({
     isNavigationLink: true,

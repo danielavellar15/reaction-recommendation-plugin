@@ -1,6 +1,6 @@
 // register.js
 import Reaction from "/imports/plugins/core/core/server/Reaction";
-
+import register from "./server/index.js"
 
 Reaction.registerPackage({
   label: "Recommendation",
@@ -22,6 +22,8 @@ Reaction.registerPackage({
     }
   ]
 });
+
+Reaction.whenAppInstanceReady(register);
 
 
 

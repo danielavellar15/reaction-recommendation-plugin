@@ -1,0 +1,15 @@
+[{
+    "language": "Portuguese",
+    "i18n": "pt",
+    "ns": "reaction-recommendation",
+    "translation": {
+      "reaction-recommendation": {
+        "admin": {
+          "settings": {
+            "recommendationLabel": "Recomendaçao"
+          }
+        }
+      }
+    }
+  }]
+  

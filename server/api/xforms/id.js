@@ -1,5 +1,6 @@
-import decodeOpaqueIdForNamespace from "@reactioncommerce/api-utils/decodeOpaqueIdForNamespace.js";
-import encodeOpaqueId from "@reactioncommerce/api-utils/encodeOpaqueId.js";
+import decodeOpaqueIdForNamespace from "../../../../../../utils/decodeOpaqueIdForNamespace.js";
+import encodeOpaqueId from "../../../../../../utils/encodeOpaqueId.js";
+
 
 export const encodeCatalogItemOpaqueId = encodeOpaqueId("reaction/catalogItem");
 export const encodeCatalogProductOpaqueId = encodeOpaqueId("reaction/catalogProduct");

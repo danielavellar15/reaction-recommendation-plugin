@@ -1,5 +1,5 @@
 import { decodeShopOpaqueId, decodeTagOpaqueId } from "../../xforms/id.js";
-import getPaginatedResponse from "@reactioncommerce/api-utils/graphql/getPaginatedResponse.js";
+import getPaginatedResponse from "../../../../../../../utils/graphql/getPaginatedResponse.js";
 
 
 export default async function recommendationItens(_, args, context, info) {
@@ -13,6 +13,10 @@ export default async function recommendationItens(_, args, context, info) {
         shopIds,
         tagIds
     });
+    console.log(query)
 
-    return getPaginatedResponse(query, connectionArgs);    
+    return query;
+    
+
+    // return getPaginatedResponse(query, connectionArgs); 
 }

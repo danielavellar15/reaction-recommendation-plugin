@@ -1,4 +1,5 @@
 import ReactionError from "@reactioncommerce/reaction-error";
+import axios from "axios"
 
 /**
  * @name recommendationItens
@@ -12,6 +13,11 @@ import ReactionError from "@reactioncommerce/reaction-error";
  * @returns {Promise<MongoCursor>} - A MongoDB cursor for the proper query
  */
 export default async function recommendationItens(context, { shopIds, tagIds } = {}) {
+  
+  const url = 'http://nodejs-api-recommendation:3100/recommendation/products'; // TODO COLOCAR EM .ENV
+
+
+  
   const { collections } = context;
   const { Catalog } = collections;
 
@@ -24,8 +30,26 @@ export default async function recommendationItens(context, { shopIds, tagIds } =
     "product.isVisible": true
   };
 
-  if (shopIds) query.shopId = { $in: shopIds };
-  if (tagIds) query["product.tagIds"] = { $in: tagIds };
+  //if (shopIds) query.shopId = { $in: shopIds };
+  //if (tagIds) query["product.tagIds"] = { $in: tagIds };
 
-  return Catalog.find(query);
+  const response = await axios.post(url, { type:'BY_USER', shopIds: shopIds })
+  console.log(response.data)
+
+  const catalog = JSON.parse( response.data);
+
+  // console.log(catalog)
+
+  const result = {   
+    nodes: catalog,
+    pageInfo: { hasNextPage: false,
+    hasPreviousPage: false,
+    startCursor: '',
+    endCursor: '' },
+    totalCount: catalog.lenght
+  }
+
+  console.log(result)
+
+  return result;
 }

@@ -3,16 +3,15 @@ import { Packages } from "/lib/collections";
 import PropTypes from "prop-types";
 import { withApollo } from "react-apollo";
 import { withRouter } from "react-router";
-import { composeWithTracker } from "@reactioncommerce/reaction-components";
+import { composeWithTracker, registerComponent } from "../../../../core/components/lib";
 import withOpaqueShopId from "/imports/plugins/core/graphql/lib/hocs/withOpaqueShopId";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Field from "@reactioncommerce/components/Field/v1"
 import TextInput from "@reactioncommerce/components/TextInput/v1"
 import React, { Component } from "react";
-import { registerComponent } from "@reactioncommerce/reaction-components";
 import { Meteor } from "meteor/meteor";
-import { Button, SettingsCard } from "@reactioncommerce/reaction-ui";
+import { Button, SettingsCard } from "../../../../core/ui/client/components";
 
 class RecommendationSettings extends Component {
 
